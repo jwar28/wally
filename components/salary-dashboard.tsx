@@ -1018,7 +1018,7 @@ export function SalaryDashboard() {
 
   return (
     <Tabs value={activeTab} onValueChange={(value) => handleTabChange(value as TabKey)}>
-      <main className="relative min-h-screen overflow-hidden bg-[radial-gradient(circle_at_top_left,_rgba(56,189,248,0.12),_transparent_34%),radial-gradient(circle_at_top_right,_rgba(14,165,233,0.08),_transparent_28%),linear-gradient(to_bottom,_rgba(2,6,23,0.01),_transparent_180px)] px-3 pb-56 pt-3 text-foreground sm:px-4 sm:pb-36 lg:px-8 lg:pb-10">
+      <main className="relative min-h-screen overflow-x-hidden bg-[radial-gradient(circle_at_top_left,_rgba(56,189,248,0.12),_transparent_34%),radial-gradient(circle_at_top_right,_rgba(14,165,233,0.08),_transparent_28%),linear-gradient(to_bottom,_rgba(2,6,23,0.01),_transparent_180px)] px-3 pb-[calc(4.25rem+env(safe-area-inset-bottom,0px))] pt-3 text-foreground sm:px-4 lg:px-8 lg:pb-10">
         <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-64 bg-[linear-gradient(to_bottom,_rgba(15,23,42,0.05),_transparent)]" />
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-4 sm:gap-5">
         <header className="sticky top-3 z-20 rounded-3xl border border-border/60 bg-card/90 p-3 shadow-lg shadow-black/5 ring-1 ring-border/40 backdrop-blur-xl sm:p-4">
@@ -1417,25 +1417,32 @@ export function SalaryDashboard() {
           </Card>
         ) : null}
       </div>
+      </main>
 
-      <nav className="fixed inset-x-3 bottom-3 z-30 md:hidden">
-        <TabsList className="grid h-auto w-full grid-cols-4 gap-1 rounded-3xl border border-border/60 bg-card/90 p-1.5 shadow-2xl shadow-black/10 ring-1 ring-border/40 backdrop-blur-xl pb-[calc(env(safe-area-inset-bottom)+0.25rem)]">
+      <nav
+        className="fixed inset-x-0 bottom-0 z-30 border-t border-border/60 bg-card pb-[env(safe-area-inset-bottom,0px)] md:hidden"
+        aria-label="Dashboard navigation"
+      >
+        <div className="grid h-16 grid-cols-4">
           {navItems.map((item) => {
             const Icon = item.icon;
             return (
-              <TabsTrigger
+              <button
                 key={item.key}
-                value={item.key}
-                className="flex h-16 flex-col items-center justify-center gap-1 rounded-2xl text-[10px] leading-none data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+                type="button"
+                onClick={() => handleTabChange(item.key)}
+                className={cn(
+                  "flex min-w-0 flex-col items-center justify-center gap-1 px-1 text-[10px] font-medium leading-none text-muted-foreground transition-colors",
+                  item.active && "bg-muted text-foreground",
+                )}
               >
-                <Icon className="h-4 w-4" />
-                {item.label}
-              </TabsTrigger>
+                <Icon className="h-5 w-5 shrink-0" />
+                <span className="max-w-full truncate">{item.label}</span>
+              </button>
             );
           })}
-        </TabsList>
+        </div>
       </nav>
-      </main>
     </Tabs>
   );
 }

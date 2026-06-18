@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { ThemeProvider } from "next-themes";
 import { Geist } from "next/font/google";
 import "./globals.css";
@@ -11,6 +11,12 @@ export const metadata: Metadata = {
   metadataBase: new URL(defaultUrl),
   title: "Wally",
   description: "Track monthly salary splits, spending, savings, and yearly totals.",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
 };
 
 const geistSans = Geist({
