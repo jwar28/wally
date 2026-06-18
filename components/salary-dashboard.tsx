@@ -649,6 +649,7 @@ export function SalaryDashboard() {
         const used = sectionUsage[section.id] ?? 0;
         return {
           ...section,
+          carryIn,
           allocated,
           used,
           remaining: carryIn + allocated - used,
