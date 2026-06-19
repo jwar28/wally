@@ -1,109 +1,157 @@
-<a href="https://demo-nextjs-with-supabase.vercel.app/">
-  <img alt="Next.js and Supabase Starter Kit - the fastest way to build apps with Next.js and Supabase" src="https://demo-nextjs-with-supabase.vercel.app/opengraph-image.png">
-  <h1 align="center">Next.js and Supabase Starter Kit</h1>
-</a>
+<div align="center">
+  <img alt="Wally" src="https://img.shields.io/badge/Wally-Salary%20Manager-14b8a6?style=flat-square&labelColor=0f172a" />
+  <h1 align="center">Wally</h1>
+  <p align="center">
+    Track monthly salary splits, spending, savings, and yearly totals — all in COP.
+  </p>
+  <p align="center">
+    <a href="#features">Features</a> ·
+    <a href="#tech-stack">Tech Stack</a> ·
+    <a href="#getting-started">Getting Started</a> ·
+    <a href="#usage">Usage</a>
+  </p>
+</div>
 
-<p align="center">
- The fastest way to build apps with Next.js and Supabase
-</p>
+<br />
 
-<p align="center">
-  <a href="#features"><strong>Features</strong></a> ·
-  <a href="#demo"><strong>Demo</strong></a> ·
-  <a href="#deploy-to-vercel"><strong>Deploy to Vercel</strong></a> ·
-  <a href="#clone-and-run-locally"><strong>Clone and run locally</strong></a> ·
-  <a href="#feedback-and-issues"><strong>Feedback and issues</strong></a>
-  <a href="#more-supabase-examples"><strong>More Examples</strong></a>
-</p>
-<br/>
+Wally is a personal finance dashboard built with **Next.js** and **Supabase**. It helps you distribute your monthly salary across custom budget sections (e.g. Essentials, Savings, Lifestyle, Buffer), log every expense, saving, transfer, or adjustment, and see your money flow across months and years.
+
+---
 
 ## Features
 
-- Works across the entire [Next.js](https://nextjs.org) stack
-  - App Router
-  - Pages Router
-  - Proxy
-  - Client
-  - Server
-  - It just works!
-- supabase-ssr. A package to configure Supabase Auth to use cookies
-- Password-based authentication block installed via the [Supabase UI Library](https://supabase.com/ui/docs/nextjs/password-based-auth)
-- Styling with [Tailwind CSS](https://tailwindcss.com)
-- Components with [shadcn/ui](https://ui.shadcn.com/)
-- Optional deployment with [Supabase Vercel Integration and Vercel deploy](#deploy-your-own)
-  - Environment variables automatically assigned to Vercel project
+- **Monthly salary tracking** — Record your salary each month in Colombian Pesos (COP).
+- **Custom budget sections** — Create, rename, and rearrange percentage-based buckets. Defaults to the classic 50/20/20/10 rule.
+- **Carry-over logic** — Unused money rolls into the next month automatically, section by section.
+- **Transaction logging** — Log expenses, savings, transfers, and adjustments per section.
+- **Yearly overview** — See month-by-month summaries and full-year totals.
+- **Authentication** — Powered by Supabase Auth with email/password sign-up and login.
+- **Dark & light mode** — Theme switching via `next-themes`.
+- **Responsive** — Works on mobile and desktop.
 
-## Demo
+---
 
-You can view a fully working demo at [demo-nextjs-with-supabase.vercel.app](https://demo-nextjs-with-supabase.vercel.app/).
+## Tech Stack
 
-## Deploy to Vercel
+| Layer | Technology |
+|-------|-----------|
+| Framework | [Next.js](https://nextjs.org/) (App Router) |
+| Styling | [Tailwind CSS](https://tailwindcss.com/) |
+| UI Components | [shadcn/ui](https://ui.shadcn.com/) (Radix primitives) |
+| Backend / Auth | [Supabase](https://supabase.com/) |
+| Language | TypeScript |
+| Package Manager | [Bun](https://bun.sh/) |
 
-Vercel deployment will guide you through creating a Supabase account and project.
+---
 
-After installation of the Supabase integration, all relevant environment variables will be assigned to the project so the deployment is fully functioning.
+## Getting Started
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fwith-supabase&project-name=nextjs-with-supabase&repository-name=nextjs-with-supabase&demo-title=nextjs-with-supabase&demo-description=This+starter+configures+Supabase+Auth+to+use+cookies%2C+making+the+user%27s+session+available+throughout+the+entire+Next.js+app+-+Client+Components%2C+Server+Components%2C+Route+Handlers%2C+Server+Actions+and+Middleware.&demo-url=https%3A%2F%2Fdemo-nextjs-with-supabase.vercel.app%2F&external-id=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fwith-supabase&demo-image=https%3A%2F%2Fdemo-nextjs-with-supabase.vercel.app%2Fopengraph-image.png)
+### Prerequisites
 
-The above will also clone the Starter kit to your GitHub, you can clone that locally and develop locally.
+- A [Supabase](https://supabase.com/) project
+- Node.js 18+ or Bun
 
-If you wish to just develop locally and not deploy to Vercel, [follow the steps below](#clone-and-run-locally).
+### Setup
 
-## Clone and run locally
-
-1. You'll first need a Supabase project which can be made [via the Supabase dashboard](https://database.new)
-
-2. Create a Next.js app using the Supabase Starter template npx command
-
-   ```bash
-   npx create-next-app --example with-supabase with-supabase-app
-   ```
+1. **Clone the repository**
 
    ```bash
-   yarn create next-app --example with-supabase with-supabase-app
+   git clone https://github.com/your-username/wally.git
+   cd wally
    ```
+
+2. **Install dependencies**
 
    ```bash
-   pnpm create next-app --example with-supabase with-supabase-app
+   bun install
    ```
 
-3. Use `cd` to change into the app's directory
+3. **Configure environment variables**
+
+   Copy `.env.example` to `.env.local` and fill in your Supabase project credentials:
+
+   ```env
+   NEXT_PUBLIC_SUPABASE_URL=your-project-url
+   NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your-publishable-or-anon-key
+   ```
+
+4. **Run the development server**
 
    ```bash
-   cd with-supabase-app
+   bun run dev
    ```
 
-4. Rename `.env.example` to `.env.local` and update the following:
+   Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-  ```env
-  NEXT_PUBLIC_SUPABASE_URL=[INSERT SUPABASE PROJECT URL]
-  NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=[INSERT SUPABASE PROJECT API PUBLISHABLE OR ANON KEY]
-  ```
-  > [!NOTE]
-  > This example uses `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`, which refers to Supabase's new **publishable** key format.
-  > Both legacy **anon** keys and new **publishable** keys can be used with this variable name during the transition period. Supabase's dashboard may show `NEXT_PUBLIC_SUPABASE_ANON_KEY`; its value can be used in this example.
-  > See the [full announcement](https://github.com/orgs/supabase/discussions/29260) for more information.
+### Database Setup
 
-  Both `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` can be found in [your Supabase project's API settings](https://supabase.com/dashboard/project/_?showConnect=true)
+Wally expects three tables in your Supabase database. Create them in the Supabase SQL editor:
 
-5. You can now run the Next.js local development server:
+```sql
+CREATE TABLE salary_months (
+  id        UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  user_id   UUID NOT NULL REFERENCES auth.users(id),
+  month     DATE NOT NULL,
+  salary_cop INTEGER NOT NULL DEFAULT 0,
+  UNIQUE(user_id, month)
+);
 
-   ```bash
-   npm run dev
-   ```
+CREATE TABLE salary_sections (
+  id         UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  user_id    UUID NOT NULL REFERENCES auth.users(id),
+  month_id   UUID NOT NULL REFERENCES salary_months(id),
+  name       TEXT NOT NULL,
+  percentage NUMERIC(5,2) NOT NULL DEFAULT 0,
+  sort_order INTEGER NOT NULL DEFAULT 0,
+  is_active  BOOLEAN NOT NULL DEFAULT true
+);
 
-   The starter kit should now be running on [localhost:3000](http://localhost:3000/).
+CREATE TABLE salary_transactions (
+  id          UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  user_id     UUID NOT NULL REFERENCES auth.users(id),
+  month_id    UUID NOT NULL REFERENCES salary_months(id),
+  section_id  UUID REFERENCES salary_sections(id),
+  kind        TEXT NOT NULL CHECK (kind IN ('expense', 'saving', 'transfer', 'adjustment')),
+  amount_cop  INTEGER NOT NULL,
+  note        TEXT,
+  occurred_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+```
 
-6. This template comes with the default shadcn/ui style initialized. If you instead want other ui.shadcn styles, delete `components.json` and [re-install shadcn/ui](https://ui.shadcn.com/docs/installation/next)
+> Enable **Row Level Security** on all three tables and create policies so users can only access their own rows. The Supabase client in this project expects RLS to be active.
 
-> Check out [the docs for Local Development](https://supabase.com/docs/guides/getting-started/local-development) to also run Supabase locally.
+---
 
-## Feedback and issues
+## Usage
 
-Please file feedback and issues over on the [Supabase GitHub org](https://github.com/supabase/supabase/issues/new/choose).
+1. **Sign up** or **log in** with your email.
+2. **Select a month** from the dropdown and enter your salary.
+3. **Adjust the sections** — rename them, change percentages, or add new ones.
+4. **Save the plan** — this persists the month and its sections to Supabase.
+5. **Log transactions** — add expenses, savings, transfers, or adjustments against any section.
+6. **View the year tab** — see how each month's salary was distributed, spent, and saved.
 
-## More Supabase examples
+---
 
-- [Next.js Subscription Payments Starter](https://github.com/vercel/nextjs-subscription-payments)
-- [Cookie-based Auth and the Next.js 13 App Router (free course)](https://youtube.com/playlist?list=PL5S4mPUpp4OtMhpnp93EFSo42iQ40XjbF)
-- [Supabase Auth and the Next.js App Router](https://github.com/supabase/supabase/tree/master/examples/auth/nextjs)
+## Project Structure
+
+```
+app/
+├── auth/             # Sign-up, login, password reset pages
+├── protected/        # Authenticated layout wrapper
+├── layout.tsx        # Root layout with ThemeProvider
+└── page.tsx          # Home page → SalaryDashboard
+components/
+├── salary-dashboard.tsx   # Main dashboard component
+├── ui/                    # shadcn/ui primitives
+└── ...                    # Auth forms, theme switcher, etc.
+lib/
+└── supabase/              # Client, server, and proxy helpers
+proxy.ts                   # Session refresh middleware
+```
+
+---
+
+## License
+
+MIT
